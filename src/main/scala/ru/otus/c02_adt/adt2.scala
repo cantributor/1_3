@@ -7,4 +7,8 @@ object adt2 {
   // Смешать все Int и все Boolean
   // MyIntOrBoolean
 
+  sealed trait MyIntOrBoolean
+  final case class MyInt(i: Int)         extends MyIntOrBoolean
+  final case class MyBoolean(b: Boolean) extends MyIntOrBoolean
+
 }

@@ -11,19 +11,21 @@ object adt1 {
   val b1: Boolean = true
   val b2: Boolean = false
 
-  // Byte - множество из ??? элементов
+  // Byte - множество из 2^8 элементов
   val bite1: Byte = 1
   val bite2: Byte = 127
   val bite3: Byte = -128
 
-  // Int - множество из ??? элементов
+  // Int - множество из 2^32 элементов
   val i1 = Int.MinValue
   val i2 = 1
   val i3 = Int.MaxValue
 
   // Unit - множество из одного элемента
+  val u: Unit = ()
 
   // Кортезиян - декартово произведение множеств - ???
+  // A, B. A * B - {(a, b): a < A, b < B}
 
   // Кортеж
   type IntProdBoolean = (Int, Boolean)

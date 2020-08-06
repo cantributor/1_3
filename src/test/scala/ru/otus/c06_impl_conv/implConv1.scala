@@ -43,6 +43,10 @@ class implConv1 extends AnyFreeSpec {
       val a = Complex(1, 2)
       val b = Complex(3, 4)
 
+      new MonoidSyntax(a)(complexMonoid(IntMonoid)).+(b)
+
+      a.+(b)
+
       (a + b) shouldBe Complex(4, 6)
     }
 

@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers._
 
 class Pm01Spec extends AnyFreeSpec {
 
-  "Сопоставление с образком" - {
+  "Сопоставление с образцом" - {
     "всегда успешное сопоставление" in {
       val res = 0 match {
         case _ => 666

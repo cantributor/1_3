@@ -3,6 +3,8 @@ package ru.otus.c05_tc
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers._
 
+import scala.annotation.tailrec
+
 class Tc01Spec extends AnyFreeSpec {
   "Monoid" - {
     trait Monoid[T] {
@@ -15,6 +17,7 @@ class Tc01Spec extends AnyFreeSpec {
     }
 
     def intProduct[T: Monoid](t: T, i: Int): T = {
+      @tailrec
       def inner(acc: T, i: Int): T =
         if (i < 1) acc
         else inner(Monoid[T].sum(acc, t), i - 1)
@@ -24,7 +27,7 @@ class Tc01Spec extends AnyFreeSpec {
 
     "int monoid" in {
       implicit object IntMonoid extends Monoid[Int] {
-        def zero: Int                = 0
+        val zero: Int                = 0
         def sum(a: Int, b: Int): Int = a + b
       }
 
@@ -33,6 +36,11 @@ class Tc01Spec extends AnyFreeSpec {
 
     "complex monoid" in {
       case class ComplexInt(re: Int, im: Int)
+
+      val a = ComplexInt(1, 2)
+      val b = ComplexInt(3, 4)
+
+      val sum = ComplexInt(a.re + b.re, a.im + b.im)
 
       // TODO
       // intProduct(ComplexInt(4, 3), 3) shouldBe ComplexInt(12, 9)
