@@ -219,7 +219,8 @@ class Pm01Spec extends AnyFreeSpec {
 
       def getNameOfReject(p: Person): String =
         p match {
-          case _ => "rejected"
+          case Person(name, age) if (age > 13) => name
+          case _                               => "rejected"
         }
 
       getNameOfReject(Person("John", 666)) should be("John")

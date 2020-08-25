@@ -44,7 +44,7 @@ class Pf01Spec extends AnyFreeSpec {
 
       val f: Subject => Long = robotId
 
-      assertThrows[MatchError](f(Person("", 0)))
+      assertThrows[MatchError](robotId(Person("", 0)))
 
       robotId.isDefinedAt(Person("", 0)) shouldBe false
       robotId.isDefinedAt(Robot(0)) shouldBe true
@@ -52,7 +52,7 @@ class Pf01Spec extends AnyFreeSpec {
       val lifted: Subject => Option[Long] = robotId.lift
 
       lifted(Person("", 0)) shouldBe None
-      lifted(Robot(666)) shouldBe Some(666)
+      robotId.lift(Robot(7)) shouldBe Some(7)
     }
 
     "on option" in {

@@ -24,18 +24,24 @@ class Tc01Spec extends AnyFreeSpec {
 
     "int monoid" in {
       implicit object IntMonoid extends Monoid[Int] {
-        def zero: Int                = 0
+        val zero: Int                = 0
         def sum(a: Int, b: Int): Int = a + b
       }
 
       intProduct(4, 3) shouldBe 12
+      intProduct(4, 3)(IntMonoid) shouldBe 12
     }
 
     "complex monoid" in {
-      case class ComplexInt(re: Int, im: Int)
+      case class Complex(re: Double, im: Double)
+
+      implicit object ComplexMonoid extends Monoid[Complex] {
+        val zero: Complex                        = Complex(0, 0)
+        def sum(a: Complex, b: Complex): Complex = Complex(a.re + b.re, a.im + b.im)
+      }
 
       // TODO
-      // intProduct(ComplexInt(4, 3), 3) shouldBe ComplexInt(12, 9)
+      intProduct(Complex(0.5, 1.5), 3) shouldBe Complex(1.5, 4.5)
     }
   }
 }
